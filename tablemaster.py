@@ -61,16 +61,16 @@ class Config:
     Configuration class to centrally manage all paths, models, and API keys.
     """
     # --- 输入文件 (Input File) ---
-    PDF_PATH = "/project/chenjian/bbb/[定期报告][2023-03-20][朗鸿科技]朗鸿科技2022年年度报告摘要.pdf"
+    PDF_PATH = "[定期报告][2023-03-20][朗鸿科技]朗鸿科技2022年年度报告摘要.pdf"
 
     # --- 模型与API配置 (Models & API Config) ---
     # 本地模型路径 (Local Model Paths)
-    VLM_MODEL_CHECKPOINT = "/project/chenjian/Qwen/Qwen2.5-VL-7B-Instruct"
-    NANONETS_MODEL_CHECKPOINT = "/project/chenjian/nanonets/Nanonets-OCR-s"
+    VLM_MODEL_CHECKPOINT = "Qwen/Qwen2.5-VL-7B-Instruct"
+    NANONETS_MODEL_CHECKPOINT = "nanonets/Nanonets-OCR-s"
 
     # OpenAI & 兼容API配置 (OpenAI & Compatible API Config)
-    API_KEY = "sk-3ni5O4wR7GTeeqKvFdC5D12f280b460797E7369455283a7d"
-    API_BASE_URL = "http://152.53.52.170:3003/v1"
+    API_KEY = ""
+    API_BASE_URL = ""
 
     # --- 🚀 模型选择器 (MODEL SELECTOR) ---
     # 在这里为每个任务选择要使用的模型。
