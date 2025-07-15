@@ -1,0 +1,61 @@
+# ==============================================================================
+# Document Processing Pipeline V9.0 - Configuration File
+# ==============================================================================
+
+# --- Input & Output ---
+# 支持 .pdf, .docx, .txt, .pptx, .zip, 或包含这些文件的目录
+input_path: "/project/chenjian/bbb/[定期报告][2023-03-20][朗鸿科技]朗鸿科技2022年年度报告摘要.pdf"
+
+# --- API Keys & Endpoints ---
+# 优先从环境变量 'OPENAI_API_KEY' 读取, 如果未设置，则使用下面的值
+# For production, it's highly recommended to use environment variables.
+openai:
+  api_key:  "sk-3ni5O4wR7GTeeqKvFdC5D12f280b460797E7369455283a7d"
+  base_url: "http://152.53.52.170:3003/v1"
+  timeout: 120
+
+# --- Local Model Checkpoints ---
+# 本地部署的大模型检查点路径
+local_models:
+  qwen_vl_checkpoint: "/project/chenjian/Qwen/Qwen2.5-VL-7B-Instruct"
+  nanonets_ocr_checkpoint: "/project/chenjian/nanonets/Nanonets-OCR-s"
+
+# --- 🚀 Model Selector ---
+# 在这里为每个任务选择要使用的模型。
+# 可用模型: 'gpt-4o', 'gpt-4.1-mini-2025-04-14', 'local_qwen', 'local_nanonets'
+# 注意: 更改模型后，请确保上面的API密钥或本地模型路径已正确配置。
+model_selector:
+  # 任务1: 图像描述 (图表、照片、PPT页面解读)
+  image_description: 'gpt-4o'
+  
+  # 任务2: 无框线表格识别
+  borderless_table_recognition: 'local_nanonets'
+  
+  # 任务3: 有框线表格的单元格内容识别
+  bordered_table_cell_recognition: 'local_qwen'
+  
+  # 任务4: 跨页表格的智能合并 (需要强大的逻辑推理能力)
+  table_merging: 'gpt-4.1-mini-2025-04-14'
+  
+  # 任务5: 文档标题层级分析 (需要强大的文档结构理解能力)
+  title_hierarchy: 'gpt-4.1-mini-2025-04-14'
+
+# --- Processing Parameters ---
+processing:
+  pdf_dpi: 200
+  # 并发与批处理大小
+  gpt4o_batch_size: 10 # 建议根据API速率限制调整
+  vlm_batch_size: 8    # 根据本地VRAM大小调整
+  paddlex_batch_size: 16 # 根据本地VRAM大小调整
+  
+  # TXT转图片配置
+  txt_to_image:
+    width: 1240
+    padding: 50
+    font_path: "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf" # 确保路径正确
+    font_size: 24
+    line_spacing: 10
+
+# --- Feature Flags ---
+# 是否在处理结束后清理临时生成的目录 (如 cropped_images, temp_cells)
+cleanup_temp_dirs: true

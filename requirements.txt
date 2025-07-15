@@ -1,0 +1,25 @@
+# Core Libraries
+numpy
+opencv-python-headless
+Pillow
+requests
+tqdm
+pyyaml
+beautifulsoup4
+
+# File Conversion
+pdf2image
+aspose-slides
+
+# For .docx conversion, LibreOffice must be installed on the system.
+# AI & Machine Learning
+# Note: torch and transformers versions should be compatible with your hardware (CPU/CUDA)
+torch
+transformers
+
+openai version > 1.0
+openai
+paddlex
+
+# Optional for CUDA memory management
+pynvml
